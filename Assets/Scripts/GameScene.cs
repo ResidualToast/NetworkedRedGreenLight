@@ -20,8 +20,6 @@ public class GameScene : MonoBehaviourPunCallbacks, IPunObservable
     public TextMeshProUGUI playerScoreText;
     public TextMeshProUGUI opponentScoreText;
 
-    public TextMeshProUGUI DELETEME_RNG_SEED;
-    public TextMeshProUGUI DELETEME_TIMERTEST;
 
     int RNGSeed = 0;
 
@@ -62,7 +60,6 @@ public class GameScene : MonoBehaviourPunCallbacks, IPunObservable
     void syncRNG(int setRNG)
     {
         Debug.Log(string.Format("setting rng to {0}", setRNG.ToString()));
-        DELETEME_RNG_SEED.text = setRNG.ToString();
         Random.InitState(setRNG);
         SetNextTime(true);
     }
@@ -109,7 +106,6 @@ public class GameScene : MonoBehaviourPunCallbacks, IPunObservable
         }
         roundNumber++;
         nextTimer = Random.Range(ConfigData.minTurnTime, ConfigData.maxTurnTime);
-        DELETEME_TIMERTEST.text = nextTimer.ToString();
     }
 
     public void TapButton()
@@ -197,9 +193,6 @@ public class GameScene : MonoBehaviourPunCallbacks, IPunObservable
         stopButton.color = ConfigData.DisabledColor;
         stopText.text = "GAME OVER";
         isActive = false;
-
-        roundTimeText.text = string.Join(System.Environment.NewLine, playerTimes.Values);
-        lastTapTimeText.text = string.Join(System.Environment.NewLine, opponentTimes.Values);
     }
 
     public override void OnPlayerLeftRoom(Player other)
